@@ -1,0 +1,18 @@
+{% extends 'base_public.html' %}
+{% block title %}Portfólio | Core Digital Aragão{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='modules/portfolio/css/style.css') }}">
+<style>
+  :root {
+    --portfolio-primary: {{ module.theme_primary or '#d4a373' }};
+    --portfolio-secondary: {{ module.theme_secondary or '#2f1b12' }};
+    --portfolio-accent: {{ module.theme_accent or '#f4d6b6' }};
+  }
+</style>
+{% endblock %}
+{% block content %}
+<section class="portfolio-hero"><div class="container portfolio-hero-grid"><div><span class="portfolio-chip">Módulo interno</span><h1>Portfólio profissional integrado ao Core</h1><p>Apresente projetos, serviços, resultados e autoridade profissional dentro do ecossistema Core Digital Aragão.</p><div class="portfolio-actions"><a class="btn btn-primary" href="#projetos">Ver projetos</a><a class="btn btn-secondary" href="{{ whatsapp_link }}" target="_blank" rel="noopener noreferrer">Deseja ter seu próprio portfólio? Clique aqui.</a></div></div><div class="portfolio-highlight-card"><span>Portfólio como módulo</span><strong>Visual próprio + integração com o Core</strong><p>Esse módulo pode ter identidade visual própria sem quebrar o padrão estrutural do sistema principal.</p></div></div></section>
+<section class="portfolio-section" id="projetos"><div class="container"><div class="portfolio-section-head"><span class="portfolio-chip">Projetos</span><h2>Projetos e trabalhos em destaque</h2><p>Conheça alguns projetos, páginas e soluções que demonstram organização, apresentação profissional e visão estratégica.</p></div><div class="portfolio-grid">{% for projeto in projetos %}<article class="portfolio-card"><img src="{{ projeto.imagem }}" alt="{{ projeto.titulo }}"><div class="portfolio-card-body"><h3>{{ projeto.titulo }}</h3><p>{{ projeto.descricao }}</p><a class="btn btn-secondary btn-small" href="{{ projeto.link }}">Saiba mais</a></div></article>{% endfor %}</div></div></section>
+<section class="portfolio-section portfolio-cta-section"><div class="container"><div class="portfolio-cta-box"><span class="portfolio-chip">Seu próprio portfólio</span><h2>Deseja ter seu próprio portfólio?</h2><p>Posso criar um portfólio profissional, bonito, organizado e alinhado ao seu posicionamento.</p><a class="btn btn-primary" href="{{ whatsapp_link }}" target="_blank" rel="noopener noreferrer">Deseja ter seu próprio portfólio? Clique aqui.</a></div></div></section>
+{% endblock %}
+{% block extra_js %}<script src="{{ url_for('static', filename='modules/portfolio/js/script.js') }}"></script>{% endblock %}

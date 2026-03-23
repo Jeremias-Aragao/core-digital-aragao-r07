@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Core Digital Aragão R07{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="public-body">
+<header class="public-header">
+    <div class="container nav-shell">
+        <a href="{{ url_for('public.home') }}" class="brand-link">
+            <span class="brand-badge">CDA</span>
+            <div><strong>Core Digital Aragão</strong><small>R07 · Plataforma Modular</small></div>
+        </a>
+        <nav class="public-nav">
+            <a href="{{ url_for('public.home') }}">Início</a>
+            <a href="{{ url_for('public.solutions') }}">Soluções</a>
+            <a href="{{ url_for('public.plans') }}">Planos</a>
+            <a href="{{ url_for('public.about') }}">Sobre</a>
+            <a href="{{ url_for('public.contact') }}">Contato</a>
+            <a class="btn btn-primary btn-small" href="{{ url_for('auth.login') }}">Entrar</a>
+        </nav>
+    </div>
+</header>
+<main>{% block content %}{% endblock %}</main>
+<footer class="public-footer"><div class="container footer-grid"><div><h3>Core Digital Aragão</h3><p>Ecossistema público, modular e preparado para SaaS.</p></div><div><p>Domínio central para apresentar, vender e entregar sistemas integrados.</p></div></div></footer>
+{% block extra_js %}{% endblock %}
+</body>
+</html>
