@@ -1,18 +1,207 @@
-{% extends 'base_public.html' %}
-{% block title %}Portfólio | Core Digital Aragão{% endblock %}
-{% block extra_css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='modules/portfolio/css/style.css') }}">
-<style>
-  :root {
-    --portfolio-primary: {{ module.theme_primary or '#d4a373' }};
-    --portfolio-secondary: {{ module.theme_secondary or '#2f1b12' }};
-    --portfolio-accent: {{ module.theme_accent or '#f4d6b6' }};
-  }
-</style>
-{% endblock %}
-{% block content %}
-<section class="portfolio-hero"><div class="container portfolio-hero-grid"><div><span class="portfolio-chip">Módulo interno</span><h1>Portfólio profissional integrado ao Core</h1><p>Apresente projetos, serviços, resultados e autoridade profissional dentro do ecossistema Core Digital Aragão.</p><div class="portfolio-actions"><a class="btn btn-primary" href="#projetos">Ver projetos</a><a class="btn btn-secondary" href="{{ whatsapp_link }}" target="_blank" rel="noopener noreferrer">Deseja ter seu próprio portfólio? Clique aqui.</a></div></div><div class="portfolio-highlight-card"><span>Portfólio como módulo</span><strong>Visual próprio + integração com o Core</strong><p>Esse módulo pode ter identidade visual própria sem quebrar o padrão estrutural do sistema principal.</p></div></div></section>
-<section class="portfolio-section" id="projetos"><div class="container"><div class="portfolio-section-head"><span class="portfolio-chip">Projetos</span><h2>Projetos e trabalhos em destaque</h2><p>Conheça alguns projetos, páginas e soluções que demonstram organização, apresentação profissional e visão estratégica.</p></div><div class="portfolio-grid">{% for projeto in projetos %}<article class="portfolio-card"><img src="{{ projeto.imagem }}" alt="{{ projeto.titulo }}"><div class="portfolio-card-body"><h3>{{ projeto.titulo }}</h3><p>{{ projeto.descricao }}</p><a class="btn btn-secondary btn-small" href="{{ projeto.link }}">Saiba mais</a></div></article>{% endfor %}</div></div></section>
-<section class="portfolio-section portfolio-cta-section"><div class="container"><div class="portfolio-cta-box"><span class="portfolio-chip">Seu próprio portfólio</span><h2>Deseja ter seu próprio portfólio?</h2><p>Posso criar um portfólio profissional, bonito, organizado e alinhado ao seu posicionamento.</p><a class="btn btn-primary" href="{{ whatsapp_link }}" target="_blank" rel="noopener noreferrer">Deseja ter seu próprio portfólio? Clique aqui.</a></div></div></section>
-{% endblock %}
-{% block extra_js %}<script src="{{ url_for('static', filename='modules/portfolio/js/script.js') }}"></script>{% endblock %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio | Core Digital Aragão</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='modules/portfolio/css/style.css') }}">
+</head>
+<body>
+
+    <header>
+        <div class="container nav">
+            <div class="logo">
+                <h2>Digital Aragão</h2>
+                <span>Portfólio Tech & Gestão</span>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#projetos">Projetos</a></li>
+                    <li><a href="#habilidades">Habilidades</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <span class="tag">Tecnologia + Gestão + Organização</span>
+                <h1>Transformando ideias em soluções digitais organizadas e funcionais</h1>
+                <p>
+                    Crio sistemas, automações e estruturas digitais com foco em produtividade,
+                    apresentação profissional e resolução de problemas reais.
+                </p>
+
+                <div class="hero-buttons">
+                    <a class="btn btn-primary" href="#projetos">Ver projetos</a>
+                    <a class="btn btn-secondary" href="{{ whatsapp_link }}" target="_blank" rel="noopener noreferrer">
+                        Deseja ter seu próprio portfólio? Clique aqui.
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-card">
+                <div class="hero-card-box">
+                    <span>Portfólio integrado ao Core</span>
+                    <strong>Visual próprio + módulo interno</strong>
+                    <p>
+                        Este portfólio mantém sua identidade visual, mas agora funciona como módulo interno do Core.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sobre" id="sobre">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">Sobre mim</span>
+                <h2>Uma visão que une administração e tecnologia</h2>
+                <p>
+                    Atuo criando soluções digitais práticas, organizadas e escaláveis,
+                    combinando estratégia, automação e desenvolvimento para gerar mais eficiência.
+                </p>
+            </div>
+
+            <div class="sobre-grid">
+                <div class="sobre-card">
+                    <h3>Organização</h3>
+                    <p>Estruturo ideias, fluxos e sistemas para que tudo funcione com lógica e clareza.</p>
+                </div>
+                <div class="sobre-card">
+                    <h3>Tecnologia</h3>
+                    <p>Desenvolvo sistemas, páginas e automações com foco em resultado real.</p>
+                </div>
+                <div class="sobre-card">
+                    <h3>Visão de crescimento</h3>
+                    <p>Busco construir soluções que possam crescer sem virar bagunça.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="servicos" id="servicos">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">Serviços</span>
+                <h2>O que eu desenvolvo</h2>
+            </div>
+
+            <div class="cards-grid">
+                {% for service in services %}
+                <div class="service-card">
+                    <div class="service-icon">{{ service.icon }}</div>
+                    <h3>{{ service.title }}</h3>
+                    <p>{{ service.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="projetos" id="projetos">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">Projetos</span>
+                <h2>Projetos em destaque</h2>
+                <p>Alguns exemplos de soluções organizadas para resolver problemas reais.</p>
+            </div>
+
+            <div class="cards-grid">
+                {% for project in projects %}
+                <article class="project-card">
+                    <h3>{{ project.title }}</h3>
+
+                    <div class="project-block">
+                        <strong>Problema</strong>
+                        <p>{{ project.problem }}</p>
+                    </div>
+
+                    <div class="project-block">
+                        <strong>Solução</strong>
+                        <p>{{ project.solution }}</p>
+                    </div>
+
+                    <div class="project-block">
+                        <strong>Tecnologias</strong>
+                        <div class="tech-list">
+                            {% for item in project.tech %}
+                            <span>{{ item }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="project-block">
+                        <strong>Resultado</strong>
+                        <p>{{ project.result }}</p>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="habilidades" id="habilidades">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">Habilidades</span>
+                <h2>Competências que aplico nos projetos</h2>
+            </div>
+
+            <div class="skills-wrap">
+                {% for skill in skills %}
+                <span class="skill-badge">{{ skill }}</span>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="numeros">
+        <div class="container">
+            <div class="stats-grid">
+                {% for stat in stats %}
+                <div class="stat-card">
+                    <h3>{{ stat.number }}</h3>
+                    <p>{{ stat.label }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="contato" id="contato">
+        <div class="container">
+            <div class="cta-box">
+                <span class="tag">Contato</span>
+                <h2>Deseja ter seu próprio portfólio?</h2>
+                <p>
+                    Posso criar um portfólio profissional, bonito, organizado e alinhado ao seu posicionamento.
+                </p>
+                <a class="btn btn-primary" href="{{ whatsapp_link }}" target="_blank" rel="noopener noreferrer">
+                    Deseja ter seu próprio portfólio? Clique aqui.
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <h3>Digital Aragão</h3>
+                <p>Portfólio Tech & Gestão integrado ao Core.</p>
+            </div>
+            <div>
+                <p>Módulo interno com identidade visual preservada.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='modules/portfolio/js/script.js') }}"></script>
+</body>
+</html>
