@@ -1,1 +1,1 @@
-console.log('Core Digital Aragão R07 carregado.');
+<script src="{{ url_for('static', filename='modules/portfolio/js/script.js') }}"></script>
